@@ -71,7 +71,6 @@ Player.prototype.handleInput = function(keyPressed, dt) {
     }
 };
 
-
 var enemy1 = new Enemy(0, 65, Math.random() * 1000);
 var enemy2 = new Enemy(0, 145, Math.random() * 1000);
 var enemy3 = new Enemy(0, 225, Math.random() * 1000);
@@ -80,8 +79,8 @@ var allEnemies = [enemy1, enemy2, enemy3];
 
 
 $('.startBtn').click(function(e) {
-  alert( "hello" );
-  console.log("hello");
+  console.log('clicked element', e.target);
+  currentGameState = 'InGame';
 });
 
 document.addEventListener('keyup', function(e) {

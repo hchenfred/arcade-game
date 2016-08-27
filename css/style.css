@@ -3,11 +3,8 @@ body {
 }
 
 .startBtn {
+    font-family: 'Sigmar One', cursive;
+    font-size: 40px;
     background: none;
     border: none;
-}
-
-.buttonImage {
-    width: 40px;
-    height: 40px;
 }
