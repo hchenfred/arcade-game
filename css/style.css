@@ -2,9 +2,14 @@ body {
     text-align: center;
 }
 
-.startBtn {
+.button {
     font-family: 'Sigmar One', cursive;
-    font-size: 40px;
+    font-size: 25px;
     background: none;
     border: none;
+}
+
+.score {
+    font-family: 'Sigmar One', cursive;
+    font-size: 25px;
 }
