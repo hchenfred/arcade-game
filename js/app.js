@@ -51,11 +51,10 @@ Player.prototype.update = function () {
             allGems[i].x = -100;
             allGems[i].y = -100;
             this.score += 10;
-            console.log("socre is " + this.score);
-            console.log(document.getElementsByClassName('score').innerHTML);
-            document.getElementsByClassName('score').innerHTML = this.score;
+
         }
     }
+    document.getElementById('score').innerHTML = "SCORE IS " + this.score;
 
 };
 
@@ -109,6 +108,10 @@ $('.startBtn').click(function(e) {
   player.x = 202;
   player.y = 408;
   player.score = 0;
+  gem1.x = 101;
+  gem1.y = 65;
+  gem2.x = 404;
+  gem2.y = 145;
   currentGameState = 'InGame';
 });
 

@@ -9,7 +9,7 @@ body {
     border: none;
 }
 
-.score {
+#score {
     font-family: 'Sigmar One', cursive;
     font-size: 25px;
 }
