@@ -33,10 +33,15 @@ var Player = function(x, y) {
     this.sprite = 'images/char-boy.png';
     this.speed = 5;
     this.score = 0;
-}
+};
 
 // Reset the player when a collision is detected
 Player.prototype.update = function () {
+    //console.log("y" + this.y);
+    if (this.y === -7) {
+        document.getElementById('winStatus').innerHTML = 'YOU ARE THE HERO!';
+    }
+
     for (var i = 0; i < allEnemies.length; i++) {
         if (this.x < allEnemies[i].x + 101 && this.x + 101 > allEnemies[i].x && this.y < allEnemies[i].y + 65 && 65 + this.y > allEnemies[i].y) {
             //console.log("player " + this.x + " " + this.y);
@@ -46,16 +51,21 @@ Player.prototype.update = function () {
         }
     }
 
-    for (var i = 0; i < allGems.length; i++) {
-        if (this.x < allGems[i].x + 101 && this.x + 101 > allGems[i].x && this.y < allGems[i].y + 65 && 65 + this.y > allGems[i].y) {
-            allGems[i].x = -100;
-            allGems[i].y = -100;
+    var gemImages = ['images/Gem Blue.png', 'images/Gem Green.png', 'images/Gem Orange.png'];
+    for (var j = 0; j < allGems.length; j++) {
+        if (this.x < allGems[j].x + 101 && this.x + 101 > allGems[j].x && this.y < allGems[j].y + 65 && 65 + this.y > allGems[j].y) {
+            //delete the gem if player hit the gem
+            allGems.splice(j,1);
             this.score += 10;
-
+            //add a new gem to a random position
+            var x = 101 * Math.floor(Math.random() * 4);
+            var y = 65 * (Math.floor(Math.random() * 3) + 1);
+            console.log(Math.floor(Math.random() * 2));
+            var newGem = new Gem(x, y, gemImages[Math.floor(Math.random() * 2)]);
+            allGems.push(newGem);
         }
     }
     document.getElementById('score').innerHTML = "SCORE IS " + this.score;
-
 };
 
 // Render the player on the screen
@@ -68,14 +78,14 @@ Player.prototype.render = function () {
 Player.prototype.handleInput = function(keyPressed, dt) {
     if (keyPressed === 'left' && this.x > 0) {
         this.x -= 101;
-    } else if (keyPressed === 'right' && this.x < 505) {
+    } else if (keyPressed === 'right' && this.x < 404) {
         this.x += 101;
     } else if (keyPressed === 'up' && this.y > 0) {
         this.y -= 83;
-    } else if (keyPressed === 'down' && this.y < 606) {
+    } else if (keyPressed === 'down' && this.y < 400) {
         this.y += 83;
     } else {
-        console.log("reset");
+        //reset player to original position
         this.x = 202;
         this.y = 408;
     }
@@ -86,12 +96,12 @@ var Gem = function(x, y, sprite) {
     this.x = x;
     this.y = y;
     this.sprite = sprite;
-}
+};
 
 // Render the gem on the screen
 Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 var enemy1 = new Enemy(0, 65, Math.random() * 1000);
 var enemy2 = new Enemy(0, 145, Math.random() * 1000);
@@ -113,12 +123,13 @@ $('.startBtn').click(function(e) {
   gem2.x = 404;
   gem2.y = 145;
   currentGameState = 'InGame';
+  document.getElementById('winStatus').innerHTML = '';
 });
 
 // change character button event handler
 $('.changeBtn').click(function(e) {
     if (player.sprite === 'images/char-boy.png') {
-        player.sprite = 'images/char-princess-girl.png';
+        player.sprite = 'images/char-pink-girl.png';
     } else {
         player.sprite = 'images/char-boy.png';
     }

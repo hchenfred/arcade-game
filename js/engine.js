@@ -119,7 +119,6 @@ var Engine = (function(global) {
         switch (currentGameState) {
         case "Title":
             // Draw the title
-            console.log("enter there");
             for (row = 0; row < numRows; row++) {
                 for (col = 0; col < numCols; col++) {
                     ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
@@ -163,15 +162,18 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
+
+        allGems.forEach(function(gem) {
+            gem.render();
+        });
+
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
 
         player.render();
 
-        allGems.forEach(function(gem) {
-            gem.render();
-        });
+
     }
 
     /* This function does nothing but it could have been a good place to
@@ -192,7 +194,7 @@ var Engine = (function(global) {
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/char-princess-girl.png',
+        'images/char-pink-girl.png',
         'images/Gem Blue.png',
         'images/Gem Green.png'
     ]);

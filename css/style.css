@@ -13,3 +13,14 @@ body {
     font-family: 'Sigmar One', cursive;
     font-size: 25px;
 }
+
+#winStatus {
+    font-family: 'Sigmar One', cursive;
+    font-size: 25px;
+    color: #ffd700;
+}
+
+footer {
+    font-family: 'Sigmar One', cursive;
+    font-size: 25px;
+}
